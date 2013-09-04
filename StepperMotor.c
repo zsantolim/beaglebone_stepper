@@ -1,30 +1,34 @@
 #include "StepperMotor.h"
 
-void StepperMotor_setup(StepperMotor* motor) {
+void StepperMotor_setup(StepperMotor_t* motor) {
 	int port, pin;	
 	// Initializes the ports and pins needed
 	// Pin gpioA1
-	port	= motor->gpioA1 / 32;
-	pin		= motor->gpioA1 % 32;
+	port	= (motor->gpioA1) / 32;
+	pin	= (motor->gpioA1) % 32;
+	setup_gpio_mem_map(port);
 	gpio_setup(port,pin,OUTPUT);
 	// Pin gpioA2
 	port	= motor->gpioA2 / 32;
-	pin		= motor->gpioA2 % 32;
+	pin	= motor->gpioA2 % 32;
+	setup_gpio_mem_map(port);
 	gpio_setup(port,pin,OUTPUT);
 	// Pin gpioB1
 	port	= motor->gpioB1 / 32;
-	pin		= motor->gpioB1 % 32;
+	pin	= motor->gpioB1 % 32;
+	setup_gpio_mem_map(port);
 	gpio_setup(port,pin,OUTPUT);
 	// Pin gpioB2
 	port	= motor->gpioB2 / 32;
-	pin		= motor->gpioB2 % 32;
+	pin	= motor->gpioB2 % 32;
+	setup_gpio_mem_map(port);
 	gpio_setup(port,pin,OUTPUT);
 	
 	// Initializes the state
 	motor->state = 0;
 }
 
-void StepperMotor_step(StepperMotor* motor, int steps) {
+void StepperMotor_step(StepperMotor_t* motor, int steps) {
 	float stepsPerRev, periodPerStep;
 	long int uPeriodPerStep;
 	int direction, stepsCount;

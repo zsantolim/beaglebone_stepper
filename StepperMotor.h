@@ -20,7 +20,7 @@ typedef struct StepperMotor {
 	int speed;		// The desired RPM speed for the Stepper Motor
 } StepperMotor_t;
 
-void StepperMotor_setup(StepperMotor* motor);
-void StepperMotor_step(StepperMotor* motor, int steps);
+void StepperMotor_setup(StepperMotor_t *motor);
+void StepperMotor_step(StepperMotor_t *motor, int steps);
 
 #endif
